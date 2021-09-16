@@ -1,0 +1,24 @@
+{
+  "name": "WhatChangedCSSAuth",
+  "description": "The auth plugin before css upload",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+    "permissions": ["storage"],
+     "action": {
+    "default_popup": "popup.html"
+  },
+  "host_permissions": [
+    "https://www.google.com/"
+  ],
+  "content_scripts": [
+   {
+    "matches": ["<all_urls>"],
+    "js": ["jquery.min.js"]
+   }
+]
+
+
+}
