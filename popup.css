@@ -4,5 +4,16 @@
 }
 
 h3 {
+  font-size: 18px;
   text-align: center;
+}
+
+.forgotpasslink,.joinlink {
+  margin-top: 5px;
+  text-decoration: none;
+  color: #1686d9;
+}
+
+.forgotpasslink:hover,.joinlink:hover {
+text-decoration: underline;
 }
