@@ -17,3 +17,7 @@ h3 {
 .forgotpasslink:hover,.joinlink:hover {
 text-decoration: underline;
 }
+
+#LoggedIn{
+  display: none;
+}
