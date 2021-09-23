@@ -14,16 +14,28 @@ function login(){
             console.log('Post Successful');
             console.log(response);
             saveLogin(response);
+            authUser();
         }
     }
     http.send(params);
 }
 
-function authStatus(){
-	var storedUser = readItem("username");
-	var storedauthKey = readItem("authKey");
-	console.log(storedUser);
-	console.log(storedauthKey);
+ function authUser(){
+
+	chrome.storage.sync.get(['authKey','username'], function(items) {
+      console.log('Item retrieved', items);
+      if(items !== undefined){
+     	document.getElementById('NotLoggedIn').style.display = 'none';
+     	document.getElementById('LoggedIn').style.display = 'block';
+     	document.getElementById('LoggedInUsername').innerHTML = items.username;
+      }else{
+
+     	document.getElementById('NotLoggedIn').style.display = 'block';
+     	document.getElementById('LoggedIn').style.display = 'none';
+     	document.getElementById('LoggedInUsername').innerHTML = '...';
+      }
+    });
+
 }
 
 function saveLogin(response){

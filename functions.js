@@ -4,6 +4,10 @@
 chrome.storage.sync.get("color", ({ color }) => {
   changeColor.style.backgroundColor = color;
 });*/
+
+
+var baseUrl = '';
+
 chrome.storage.onChanged.addListener(function(changes, namespace) {
      console.log("change recived!");
      //var logDiv = document.getElementById("NotLoggedIn");
@@ -16,17 +20,6 @@ function saveItem(item){
       console.log('Item saved');
     });
 }
-
-function readItem(item){
-  var savedItem;
-    chrome.storage.sync.get(item, function(items) {
-      console.log('Item retrieved', items);
-      savedItem = items;
-    });
-  return savedItem;
-}
-
-var baseUrl = '';
 
 function GetUrl(url){
   var xhr = new XMLHttpRequest();
@@ -53,8 +46,17 @@ function registerAction(id, action, actionFunction){
     });
 }
 
+function getCurrentTab(){
+  chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+    let url = tabs[0].url;
+    // use `url` here inside the callback because it's asynchronous!
+    console.log(url);
+});
+}
 window.onload=function(){
-  login();
-  authStatus();
-  registerAction('submit','click', login);    
+  //login();
+  //authStatus();
+  //getCurrentTab();
+  registerAction('submit','click', login);   
+  authUser(); 
 }
